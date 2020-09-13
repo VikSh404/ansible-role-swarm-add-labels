@@ -5,7 +5,7 @@
 - name: Get info about Docker Swarm and list of registered nodes
   docker_swarm_info:
     nodes: yes
-  delegate_to: "{{ groups['manager'][0] }}"
+  delegate_to: "{{ groups['managers'][0] }}"
   register: result_docker_swarm_info
 
 #################
@@ -20,7 +20,7 @@
     hostname: "{{ hostname }}"
     labels:
     labels_state: replace
-  delegate_to: "{{ groups['manager'][0] }}"
+  delegate_to: "{{ groups['managers'][0] }}"
 
 
     ##################
@@ -30,5 +30,5 @@
   docker_node:
     hostname: "{{ hostname }}"
     labels: "{{ item }}=true"
-  delegate_to: "{{ groups['manager'][0] }}"
+  delegate_to: "{{ groups['managers'][0] }}"
   loop: "{{ swarm_labels }}"

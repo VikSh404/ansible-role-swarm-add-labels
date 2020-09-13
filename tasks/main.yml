@@ -1,0 +1,34 @@
+###################################
+# Change hostnames from variables #
+###################################
+
+- name: Get info about Docker Swarm and list of registered nodes
+  docker_swarm_info:
+    nodes: yes
+  delegate_to: "{{ groups['manager'][0] }}"
+  register: result_docker_swarm_info
+
+#################
+# Change labels #
+#################
+    #####################
+    # Delete all labels #
+    #####################
+
+- name: Delete all labels on all nodes
+  docker_node:
+    hostname: "{{ hostname }}"
+    labels:
+    labels_state: replace
+  delegate_to: "{{ groups['manager'][0] }}"
+
+
+    ##################
+    # Add new labels #
+    ##################
+- name: Add new labels from variables
+  docker_node:
+    hostname: "{{ hostname }}"
+    labels: "{{ item }}=true"
+  delegate_to: "{{ groups['manager'][0] }}"
+  loop: "{{ swarm_labels }}"

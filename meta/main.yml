@@ -1,0 +1,20 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: ansible-role-create-docker-swarm
+  author: VikSh404
+  description: Install Docker on CentOS7.
+  license: "MIT"
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: CentOS
+      versions:
+        - all
+  galaxy_tags:
+    - docker
+    - swarm
+    - labels
